@@ -1,0 +1,68 @@
+again: clr p2.0
+       clr p2.1
+	   setb p2.3
+	   clr p2.4
+	   clr p2.5
+	   set p2.6
+	   clr p2.7
+	   clr p3.4
+	   setb p3.5
+	   clr p3.6
+	   clr p3.7
+	   acall delay
+	   clr p2.2
+	   setb p2.1
+	   clr p2.3
+	   setb p2.4
+	   acall delay1
+	   clr p2.1
+	   clr p2.4
+	   setb p2.0
+	   setb p2.5
+	   acall delay
+	   clr p2.5
+	   clr p2.6
+	   setb p2.4
+	   setb p2.7
+	   acall delay1
+	   clr p2.4
+	   clr p2.7
+	   setb p3.4
+	   setb p2.3
+	   acall delay
+	   clr p3.4
+	   clr p3.5
+	   setb p2.7
+	   setb p3.6
+	   acall delay1
+	   clr p2.7
+	   clr p3.6
+	   setb p2.6
+	   setb p3.7
+	   acall delay
+	   sjmp again
+
+
+delay:mov r1,#255
+   go:mov tmod,#01h
+      mov tl0,#00h
+	  mov th0,,#00h
+	  setb tr0
+
+ here:jnb tf0
+      clr tr0
+	  clr tf0
+	  djnz r1,go
+	  ret
+
+delay1:mov r2,#150
+go1:mov tmod,#01h
+    mov tl0,#00h
+	mov th0,#00h
+	setb tr0
+
+here1:jnb tf0,here
+      clr tr0
+	  clr tf0
+	  djnz r2,go1
+
